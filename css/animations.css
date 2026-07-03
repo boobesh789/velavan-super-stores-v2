@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Animation states — driven by GSAP (js/animations.js)
+   These classes define the *initial* state; GSAP tweens to the revealed state.
+   ========================================================================== */
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+  will-change: transform, opacity;
+}
+
+.reveal-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fallback for no-JS or reduced motion: content stays visible */
+.no-js .reveal-up,
+.reduced-motion .reveal-up {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Product / category card entrance stagger targets */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+.stagger-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hero canvas fade-in on load */
+.hero-canvas {
+  opacity: 0;
+  animation: canvasFadeIn 1.4s ease forwards 0.2s;
+}
+@keyframes canvasFadeIn {
+  to { opacity: 1; }
+}
